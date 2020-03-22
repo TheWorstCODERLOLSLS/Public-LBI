@@ -70,7 +70,9 @@ int LBI() {
 	while (true) {
 		std::string S;
 		std::getline(std::cin, S);
-		S = Internet::DownloadURL(S);
+		
+		if(S.find("https://") != std::string::npos)
+			S = Internet::DownloadURL(S);
 		
 		luaL_loadbuffer(L, S.c_str(), S.length(), "LBI");
 		lua_setglobal(L, "__C__");
