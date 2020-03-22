@@ -62,7 +62,7 @@ int LBI() {
 	const auto VFT = R::Off::ASLR(0x1C40458);
 	const auto ScriptContext = R::ASDF_Scanner::Scan(0x04, (char*)&VFT, (char*)"xxxx"); //source note: credit asdf for scanner. is not mine i do other method.
 	const auto rL = *(DWORD*)(ScriptContext + 56 * 0 + 172) - (DWORD)(ScriptContext + 56 * 0 + 172);
-	*(ULONG_PTR*)(*(ULONG_PTR*)(rL + 132) + 24) = 6;
+	*(DWORD*)(*(DWORD*)(rL + 132) + 24) = 6;
 	
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
