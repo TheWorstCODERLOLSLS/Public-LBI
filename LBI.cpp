@@ -67,6 +67,8 @@ int LBI() {
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
 
+	const auto LBI_LUAU = Internet::DownloadURL("https://github.com/Compiled-Code/roblox/blob/master/lbi.luau?raw=true");
+	
 	while (true) {
 		std::string S;
 		std::getline(std::cin, S);
@@ -92,7 +94,6 @@ int LBI() {
 		R::Off::pushlstring_roblox(rL, lua_bytecode, lua_bytecode_size);
 		R::Off::setfield_roblox(rL, LUA_GLOBALSINDEX, "SCRIPT_VALUE");
 
-		const auto LBI_LUAU = Internet::DownloadURL("https://github.com/Compiled-Code/roblox/blob/master/lbi.luau?raw=true");
 		R::Off::deserialize_roblox(rL, "LBI", LBI_LUAU.c_str(), LBI_LUAU.length());
 		R::Off::spawn_roblox(rL);
 	}
