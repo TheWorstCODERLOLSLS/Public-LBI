@@ -87,9 +87,11 @@ int LBI() {
 
 		lua_getglobal(L, "__BYTECODE__");
 		const auto lua_bytecode = lua_tostring(L, -1);
+		lua_pop(L, 1);
 
 		lua_getglobal(L, "__SIZE__");
 		const auto lua_bytecode_size = lua_tonumber(L, -1);
+		lua_pop(L, 1);
 
 		R::Off::pushlstring_roblox(rL, lua_bytecode, lua_bytecode_size);
 		R::Off::setfield_roblox(rL, LUA_GLOBALSINDEX, "SCRIPT_VALUE");
