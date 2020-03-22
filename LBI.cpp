@@ -96,8 +96,9 @@ int LBI() {
 		R::Off::pushlstring_roblox(rL, lua_bytecode, lua_bytecode_size);
 		R::Off::setfield_roblox(rL, LUA_GLOBALSINDEX, "SCRIPT_VALUE");
 
-		R::Off::deserialize_roblox(rL, "LBI", LBI_LUAU.c_str(), LBI_LUAU.length());
-		R::Off::spawn_roblox(rL);
+		const auto newthread = R::Off::newthread_roblox(rL);
+		R::Off::deserialize_roblox(newthread, "LBI", LBI_LUAU.c_str(), LBI_LUAU.length());
+		R::Off::spawn_roblox(newthread);
 	}
 
 	return 1;
