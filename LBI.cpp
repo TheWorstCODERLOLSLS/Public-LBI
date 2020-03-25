@@ -59,23 +59,23 @@ namespace Internet {
 int LBI() {
 	R::Bypass::b_console("Public LBI | CompiledCode");
 
-	const auto VFT = R::Off::ASLR(0x1C40458);
+	const auto VFT = R::Off::ASLR(0x1C51B18);
 	const auto ScriptContext = R::ASDF_Scanner::Scan(0x04, (char*)&VFT, (char*)"xxxx"); //source note: credit asdf for scanner. is not mine i do other method.
-	const auto rL = *(DWORD*)(ScriptContext + 56 * 0 + 172) - (DWORD)(ScriptContext + 56 * 0 + 172);
+	const auto rL = ScriptContext + 56 * 0 + 172 - *(DWORD*)(ScriptContext + 56 * 0 + 172);
 	*(DWORD*)(*(DWORD*)(rL + 132) + 24) = 6;
 	
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
 
 	const auto LBI_LUAU = Internet::DownloadURL("https://github.com/Compiled-Code/roblox/blob/master/lbi.luau?raw=true");
-	
+
 	while (true) {
 		std::string S;
 		std::getline(std::cin, S);
-		
-		if(S.find("https://") != std::string::npos || S.find("http://") != std::string::npos)
+
+		if (S.find("https://") != std::string::npos || S.find("http://") != std::string::npos)
 			S = Internet::DownloadURL(S);
-		
+
 		luaL_loadbuffer(L, S.c_str(), S.length(), "LBI");
 		lua_setglobal(L, "__C__");
 
@@ -95,7 +95,7 @@ int LBI() {
 
 		R::Off::pushlstring_roblox(rL, lua_bytecode, lua_bytecode_size);
 		R::Off::setfield_roblox(rL, LUA_GLOBALSINDEX, "SCRIPT_VALUE");
-
+		
 		const auto newthread = R::Off::newthread_roblox(rL);
 		R::Off::deserialize_roblox(newthread, "LBI", LBI_LUAU.c_str(), LBI_LUAU.length());
 		R::Off::spawn_roblox(newthread);
