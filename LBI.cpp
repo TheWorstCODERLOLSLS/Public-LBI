@@ -59,10 +59,10 @@ namespace Internet {
 int LBI() {
 	R::Bypass::b_console("Public LBI | CompiledCode");
 
-	const auto VFT = R::Off::ASLR(0x1C51B18);
+	const auto VFT = R::Off::ASLR(0x1C890C8);
 	const auto ScriptContext = R::ASDF_Scanner::Scan(0x04, (char*)&VFT, (char*)"xxxx"); //source note: credit asdf for scanner. is not mine i do other method.
-	const auto rL = ScriptContext + 56 * 0 + 172 - *(DWORD*)(ScriptContext + 56 * 0 + 172);
-	*(DWORD*)(*(DWORD*)(rL + 132) + 24) = 6;
+	const auto rL = ScriptContext + 56 * 0 + 172 + *(DWORD*)(ScriptContext + 56 * 0 + 172);
+	*(DWORD*)(*(DWORD*)(rL + 128) + 24) = 6;
 	
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
