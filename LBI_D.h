@@ -76,22 +76,19 @@ namespace R {
 		}
 
 		using t_d = int(__cdecl*)(DWORD v1, const char* v2, const char* v3, size_t v4);
-		t_d deserialize_roblox = (t_d)Bypass::ret(ASLR(0x8C81B0));
+		t_d deserialize_roblox = (t_d)(Bypass::ret(ASLR(0x8D4410)));
 
 		using nt_t = int(__cdecl*)(DWORD v1);
-		nt_t newthread_roblox = (nt_t)Bypass::ret(ASLR(0x7cB5E0));
+		nt_t newthread_roblox = (nt_t)(Bypass::ret(ASLR(0x7CDE20)));
 
 		using s_t = void(__cdecl*)(DWORD v1);
-		s_t spawn_roblox = (s_t)Bypass::ret(ASLR(0x72a210));
+		s_t spawn_roblox = (s_t)(Bypass::ret(ASLR(0x72C2F0)));
 
 		using ps_t = void(__cdecl*)(DWORD v1, const char* v2, int v3);
-		ps_t pushlstring_roblox = (ps_t)Bypass::ret(ASLR(0x7CBF90));
-
-		typedef void(__stdcall* g_t)(DWORD v1, int a2, const char* a3);
-		static g_t getfield_roblox = (g_t)Bypass::ret(ASLR(0x7cabd0));
+		ps_t pushlstring_roblox = (ps_t)(Bypass::ret(ASLR(0x7CE7B0)));
 		
-		using sf_t = void(__fastcall*)(DWORD v1, int v2, const char* v3);
-		sf_t setfield_roblox = (sf_t)Bypass::ret(ASLR(0x7cCD80));
+		using sf_t = void(__cdecl*)(DWORD v1, int v2, const char* v3);
+		sf_t setfield_roblox = (sf_t)(Bypass::ret(ASLR(0x7CF5E0)));
 	}
 
 	namespace ASDF_Scanner {
@@ -135,5 +132,4 @@ namespace R {
 			return find_Pattern(0x7FFFFFFF, (BYTE*)content, mask, mode);
 		}
 	}
-
 }
